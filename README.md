@@ -1,10 +1,5 @@
 # GitHub Action to Sync S3 Bucket and invalidate the CloudFront cache and compile JS files using Google Closure 🔄
 
-yarn global add google-closure-compiler
-google-closure-compiler --js s3-static/nv.js --js_output_file s3-static/public/nv.js
-cp -f s3-static/public/nv.js s3-static/public/nv.min.js
-
-
 This simple action uses the [Google Closure Compiler](https://developers.google.com/closure/compiler) and [vanilla AWS CLI](https://docs.aws.amazon.com/cli/index.html) to compile JS files in directory and sync a that directory (either from your repository or generated during your workflow) with a remote S3 bucket and afterwards invalidate the CloudFront cache.
 
 
