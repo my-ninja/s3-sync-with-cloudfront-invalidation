@@ -1,6 +1,6 @@
-name: "AWS S3 Sync with CloudFront Cache invalidation"
-description: "Sync a directory to an AWS S3 bucket and invalidate the CloudFront cache"
-author: kersvers
+name: "AWS S3 Sync with CloudFront Cache invalidation and Google Closure Compile"
+description: "Compile JS files Sync a directory to an AWS S3 bucket and invalidate the CloudFront cache"
+author: H4UX
 runs:
   using: docker
   image: Dockerfile
