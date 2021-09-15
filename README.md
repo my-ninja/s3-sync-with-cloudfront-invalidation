@@ -1,6 +1,11 @@
-# GitHub Action to Sync S3 Bucket and invalidate the CloudFront cache 🔄
+# GitHub Action to Sync S3 Bucket and invalidate the CloudFront cache and compile JS files using Google Closure 🔄
 
-This simple action uses the [vanilla AWS CLI](https://docs.aws.amazon.com/cli/index.html) to sync a directory (either from your repository or generated during your workflow) with a remote S3 bucket and afterwards invalidate the CloudFront cache.
+yarn global add google-closure-compiler
+google-closure-compiler --js s3-static/nv.js --js_output_file s3-static/public/nv.js
+cp -f s3-static/public/nv.js s3-static/public/nv.min.js
+
+
+This simple action uses the [Google Closure Compiler](https://developers.google.com/closure/compiler) and [vanilla AWS CLI](https://docs.aws.amazon.com/cli/index.html) to compile JS files in directory and sync a that directory (either from your repository or generated during your workflow) with a remote S3 bucket and afterwards invalidate the CloudFront cache.
 
 
 ## Usage
@@ -42,6 +47,7 @@ jobs:
         AWS_REGION: 'eu-west-1'   # optional: defaults to us-east-1
         SOURCE_DIR: 'public'      # optional: defaults to entire repository
         DEST_DIR: 'subdirectory'      # optional: defaults to the root of the bucket
+        COMPILE_JS: 'min' #optional: defaults to none (no compile)
 ```
 
 
@@ -59,7 +65,7 @@ The following settings must be passed as environment variables as shown in the e
 | `AWS_S3_ENDPOINT` | The endpoint URL of the bucket you're syncing to. Can be used for [VPC scenarios](https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/) or for non-AWS services using the S3 API, like [DigitalOcean Spaces](https://www.digitalocean.com/community/tools/adapting-an-existing-aws-s3-application-to-digitalocean-spaces). | `env` | No | Automatic (`s3.amazonaws.com` or AWS's region-specific equivalent) |
 | `SOURCE_DIR` | The local directory (or file) you wish to sync/upload to S3. For example, `public`. Defaults to your entire repository. | `env` | No | `./` (root of cloned repository) |
 | `DEST_DIR` | The directory inside of the S3 bucket you wish to sync/upload to. For example, `my_project/assets`. Defaults to the root of the bucket. | `env` | No | `/` (root of bucket) |
-
+| `COMPILE_JS` | Choose if to minify JS files using Google Clousure Library. min = Comile and replace, both = Compile to new file named FILE.min.js and keep original. Defaults to no. | `env` | No | 0 |
 
 ## License
 
