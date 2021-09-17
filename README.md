@@ -1,6 +1,6 @@
-# GitHub Action to Sync S3 Bucket and invalidate the CloudFront cache and compile JS files using Google Closure 🔄
+# GitHub Action to Compile JS files using Google Closure, Sync to S3 Bucket and invalidate CloudFront cache
 
-This simple action uses the [Google Closure Compiler](https://developers.google.com/closure/compiler) and [vanilla AWS CLI](https://docs.aws.amazon.com/cli/index.html) to compile JS files in directory and sync a that directory (either from your repository or generated during your workflow) with a remote S3 bucket and afterwards invalidate the CloudFront cache.
+This simple action uses the [Google Closure Compiler](https://developers.google.com/closure/compiler) and [AWS CLI](https://docs.aws.amazon.com/cli/index.html) to compile JS files in directory and sync a that directory (either from your repository or generated during your workflow) with a remote S3 bucket and afterwards invalidate the CloudFront cache.
 
 
 ## Usage
@@ -24,7 +24,7 @@ name: Upload Website
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
@@ -61,6 +61,9 @@ The following settings must be passed as environment variables as shown in the e
 | `SOURCE_DIR` | The local directory (or file) you wish to sync/upload to S3. For example, `public`. Defaults to your entire repository. | `env` | No | `./` (root of cloned repository) |
 | `DEST_DIR` | The directory inside of the S3 bucket you wish to sync/upload to. For example, `my_project/assets`. Defaults to the root of the bucket. | `env` | No | `/` (root of bucket) |
 | `COMPILE_JS` | Choose if to minify JS files using Google Clousure Library. min = Comile and replace, both = Compile to new file named FILE.min.js and keep original. Defaults to no. | `env` | No | 0 |
+
+
+This repo forked origanlly from https://github.com/marketplace/actions/aws-s3-sync-with-cloudfront-cache-invalidation and add Google Closure compiler as an option
 
 ## License
 
