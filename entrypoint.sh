@@ -55,7 +55,6 @@ if [ "$COMPILE_JS" == "both" ] || [ "$COMPILE_JS" == "min" ]; then
       rm -f $f
     fi
     ls -la ${SOURCE_DIR}
-    cat $f
   done
 fi
 
