@@ -51,7 +51,8 @@ if [ "$COMPILE_JS" == "both" ] || [ "$COMPILE_JS" == "min" ]; then
     #echo "closure-compiler --js $f --js_output_file $output"
     closure-compiler --js $f --js_output_file $output
     if [ "$COMPILE_JS" == "min" ]; then
-      mv -f $output $f
+      #mv -f $output $f
+      rm -f $f
     fi
     ls -la ${SOURCE_DIR}
     cat $f
