@@ -14,7 +14,8 @@ LABEL maintainer="H4UX <i@h4ux.com>"
 ENV AWSCLI_VERSION="1.20.42"
 
 RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
-RUN pip install --quiet --no-cache-dir closure
+RUN apk add npm 
+RUN npm install terser -g
 
 #RUN mkdir -p /s3-static/public
 #COPY nv.js /s3-static/public/nv.js

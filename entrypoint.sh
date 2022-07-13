@@ -48,8 +48,8 @@ if [ "$COMPILE_JS" == "both" ] || [ "$COMPILE_JS" == "min" ]; then
     d=$(dirname "$f")
     output=$d/$c.min.js
     
-    #echo "closure-compiler --js $f --js_output_file $output"
-    closure-compiler --js $f --js_output_file $output
+    #echo "terser --js $f --js_output_file $output"
+    terser $f --output $output --mangle
     if [ "$COMPILE_JS" == "min" ]; then
       #mv -f $output $f
       rm -f $f
