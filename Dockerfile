@@ -13,7 +13,7 @@ LABEL maintainer="H4UX <i@h4ux.com>"
 # https://github.com/aws/aws-cli/blob/master/CHANGELOG.rst
 ENV AWSCLI_VERSION="1.20.42"
 
-RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
+RUN pip install --quiet --no-cache-dir --no-build-isolation awscli==${AWSCLI_VERSION}
 RUN apk add npm 
 RUN npm install terser -g
 
